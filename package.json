@@ -1,0 +1,21 @@
+{
+  "name": "BrewBro",
+  "version": "1.0.0",
+  "description": "Find the best place for brews with your bro",
+  "main": "app.js",
+  "author": "Dana Simmons <dsanalog@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "handlebars": "^4.2.0",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
