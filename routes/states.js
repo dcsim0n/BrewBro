@@ -4,14 +4,18 @@
 */
 
 const express = require('express');
-const router = express.Router();
+const request = require('request');
+const api = require('../api_routes');
 
+const router = express.Router();
 
 router.post('/states', function(req, res, next) {
   
   const state = req.body.state;
-  
-  res.render('states', { title: 'Brew Bro: Search by State' });
+  request.get(api.by_state( state ), ( err, api_resp, body ) => {
+    data = JSON.parse(body);
+    res.render('states', { title: 'Brew Bro: Search by State' , brews: data });
+  });
 });
 
 module.exports = router;
