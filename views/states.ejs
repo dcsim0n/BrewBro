@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p><%= title %></p>
+    <div>
+      <ul>
+
+      <% brews.forEach( (brew) => { %> 
+        <li>Name <%=brew.name %> </li>
+        <li>City <%=brew.city %> </li>
+      <% }); %> 
+
+      </ul>
+   </div>
+  </body>
+</html>

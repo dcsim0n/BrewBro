@@ -1,20 +1,17 @@
 {
-  "name": "BrewBro",
-  "version": "1.0.0",
-  "description": "Find the best place for brews with your bro",
-  "main": "app.js",
-  "author": "Dana Simmons <dsanalog@gmail.com>",
-  "license": "MIT",
+  "name": "brewbro",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon ./bin/www" 
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^2.7.1",
-    "express": "^4.17.1",
-    "handlebars": "^4.2.0",
-    "pug": "^2.0.4",
-    "request": "^2.88.0"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"

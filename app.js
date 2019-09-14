@@ -1,38 +1,47 @@
-/**
-|--------------------------------------------------
-| Brew Bro App.js Dana Simmons
-|--------------------------------------------------
+/*
+ * Brew Bros app.js
+ * Dana Simmons 2019
 */
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const rootDir = require('./util/path');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-const mainRoute = require('./routes/main');
+var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
+var statesRouter = require('./routes/states');
+var app = express();
 
-const app = express();
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-app.set('view engine','pug');
-app.set('views', 'views');
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static( path.join( rootDir, 'public' ))); 
+app.use('/',statesRouter);
+app.use('/', indexRouter);
+//app.use('/users', usersRouter);
 
-app.use((req, res, next) =>{
-
-  console.log(req.method + " Request for: " + req.url);
-  next();
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.use( mainRoute );
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-
-app.use(( req, res, next ) => {
-  console.log("Page not found...");
-  res.status(404).sendFile(path.join( rootDir, 'views', '404.html'))
-
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-
-app.listen('3000');
+module.exports = app;
