@@ -7,8 +7,12 @@
   <body>
     <div class="container">
       <div class="row">
+        <%- include('includes/navbar.ejs') %>          
+      </div>
+
+      <div class="row">
         <div class="col">
-          <h1><%= title %></h1>
+          
           <p>Welcome to <%= title %></p>
           <p>Pick a state to veiw local breweries</p>
           <!-- <form action="/states" method="POST">
