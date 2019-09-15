@@ -2,20 +2,41 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%- include('includes/bootstrapcss.ejs') %>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p><%= title %></p>
-    <div>
-      <ul>
 
-      <% brews.forEach( (brew) => { %> 
-        <li>Name <%=brew.name %> </li>
-        <li>City <%=brew.city %> </li>
-      <% }); %> 
+    <div class="container">
 
-      </ul>
-   </div>
+      <div class="col">
+
+        <div class="row">
+
+            <h1><%= title %></h1>
+            
+            <div class="row">
+              
+              
+              <% brews.forEach( (brew) => { %>
+
+                <div class="card col-3 m-1">
+                  <div class="card-body">
+                    <div class="card-title">
+                      <%= brew.name.length < 20 ? brew.name : brew.name.slice(0,20) + "..." %>
+                    </div>
+                    <ul>
+                      <li>City: <%=brew.city %> </li>
+                    </ul> 
+                  </div>
+                </div>
+              <% }); %> 
+        
+              
+           </div>
+
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>
