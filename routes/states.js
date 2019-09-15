@@ -9,9 +9,9 @@ const api = require('../api_routes');
 
 const router = express.Router();
 
-router.post('/states', function(req, res, next) {
+router.get('/state/:name', function(req, res, next) {
   
-  const state = req.body.state;
+  const state = req.params.name;
   request.get(api.by_state( state ), ( err, api_resp, body ) => {
     data = JSON.parse(body);
     res.render('states', { title: 'Brew Bro: Search by State' , brews: data });
