@@ -8,10 +8,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var sequelize = require('./util/database');
 
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var statesRouter = require('./routes/states');
+var loadUser = require('./controllers/loadUser');
+var User = require('./models/user');
+var Favorite = require('./models/favorite');
 var app = express();
 
 // view engine setup
@@ -24,7 +28,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/',statesRouter);
+app.use('/', loadUser);
+app.use('/', statesRouter);
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
@@ -44,4 +49,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+//Associations
+User.hasMany(Favorite);
+Favorite.belongsTo(User);
+
+sequelize.sync({ force: true })
+.then( err => {
+  app.listen( 3000 );
+});
