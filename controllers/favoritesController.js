@@ -11,7 +11,7 @@ exports.createFavorite = function ( req, resp, next) {
   User.findByPk(req.params.userId)
   .then( user => {
     console.log("adding favoirte to user: ", user.name)
-    return user.addFavorite({ breweryId: req.body.breweryId });
+    return user.createFavorite({ breweryId: req.body.breweryId, name: req.body.name });
   })
   .then( () => {
     resp.redirect('/');

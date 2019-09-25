@@ -40,10 +40,17 @@ exports.createUser = function( req, res, next ) {
 };
 
 exports.userDetails = function( req, res, next ) {
+  let currentUser;
   User.findByPk( req.params.id )
   .then( user => {
-    res.render('user-detail', {
-      user
-    })
+    currentUser = user;
+    return user.getFavorites()
   })
+  .then( favorites =>{
+    res.render('user-detail', {
+      title: "User Favorites",
+      user: currentUser, 
+      favorites
+    })
+  });
 }

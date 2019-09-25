@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('includes/bootstrapcss.ejs') %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <%- include('includes/navbar.ejs') %>          
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <!-- Page header-->
+          <h4><%= user.name %>'s Favorites</h4>
+        </div>
+      </div>
+      <div class="row">
+          <!-- Page Main Content-->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID:</th>
+                <th>Brewery Name:</th>
+                <th>Delete?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% favorites.forEach( fav =>{ %>
+                
+                <tr>
+                  <td><%= fav.id %></td>
+                  <td><%= fav.name %></td>
+                  <td>Delete</td>
+                </tr>
+                
+              <% }); %>
+              
+              
+            </tbody>
+          </table>
+
+      </div>
+
+    </div>
+    <%- include('includes/bootstrapjs.ejs') %>
+  </body>
+</html>

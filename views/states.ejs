@@ -31,6 +31,7 @@
                     </ul> 
                     <form action="/users/<%=user.id%>/favorites" method="POST" class="form-group">
                       <input type="hidden" name="breweryId" value="<%= brew.id %>">
+                      <input type="hidden" name="name" value="<%= brew.name %>">
                       <button type="submit">Favorite</button>
                     </form>
                   </div>

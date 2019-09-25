@@ -59,8 +59,8 @@ app.use(function(err, req, res, next) {
 User.hasMany(Favorite);
 Favorite.belongsTo(User);
 
-// sequelize.sync({ force: true })
-sequelize.sync()
+sequelize.sync({ force: true })
+// sequelize.sync()
 .then( err => {
   app.listen( 3000 );
 });
