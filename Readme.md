@@ -13,4 +13,3 @@
 + `/users/:id` information for a single user
 + `POST: /users/` make a new user and redirect to `/`
 + `POST: /users/:id/favorites` add to a users favorites
-+ `GET: /users/:id/favorites` show all a users favorites

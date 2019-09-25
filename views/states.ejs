@@ -29,6 +29,10 @@
                     <ul>
                       <li>City: <%=brew.city %> </li>
                     </ul> 
+                    <form action="/users/<%=user.id%>/favorites" method="POST" class="form-group">
+                      <input type="hidden" name="breweryId" value="<%= brew.id %>">
+                      <button type="submit">Favorite</button>
+                    </form>
                   </div>
                 </div>
               <% }); %> 

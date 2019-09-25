@@ -38,3 +38,12 @@ exports.createUser = function( req, res, next ) {
   });
 
 };
+
+exports.userDetails = function( req, res, next ) {
+  User.findByPk( req.params.id )
+  .then( user => {
+    res.render('user-detail', {
+      user
+    })
+  })
+}

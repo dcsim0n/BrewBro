@@ -14,7 +14,11 @@ router.get('/:name', function(req, res, next) {
   const state = req.params.name;
   request.get(api.by_state( state ), ( err, api_resp, body ) => {
     data = JSON.parse(body);
-    res.render('states', { title: `Breweries for: ${states[state].name}` , brews: data });
+    res.render('states', { 
+      title: `Breweries for: ${states[state].name}`, 
+      brews: data,
+      user: req.user
+    });
   });
 });
 
