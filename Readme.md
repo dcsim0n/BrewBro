@@ -10,7 +10,6 @@
 ## Routes
 + `/` display list of states, dropdown for sellecting a user
 + `/users` display information for all users
-+ `/users/new` display new user form
 + `/users/:id` information for a single user
 + `POST: /users/` make a new user and redirect to `/`
 + `POST: /users/:id/favorites` add to a users favorites

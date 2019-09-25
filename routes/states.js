@@ -9,7 +9,7 @@ const api = require('../api_routes');
 const states = require('../states.json');
 const router = express.Router();
 
-router.get('/state/:name', function(req, res, next) {
+router.get('/:name', function(req, res, next) {
   
   const state = req.params.name;
   request.get(api.by_state( state ), ( err, api_resp, body ) => {
