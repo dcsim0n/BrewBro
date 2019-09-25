@@ -23,6 +23,7 @@ exports.selectUser =  function(req, res, next) {
   .then( users => {
 
     res.render('select-user', {
+      user: req.user,
       title: "Chose user account",
       users
     });
