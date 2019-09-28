@@ -17,6 +17,7 @@ exports.defaultUser = function ( req, res, next ){
   // });
   getDb().collection('users').findOne({name: 'Dana'})
   .then( user => {
+    console.log("Default user", user)
     if(!user){
       return getDb().collection('users').insert({name: 'Dana', favorites:[]})
     }
