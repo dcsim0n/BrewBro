@@ -9,12 +9,6 @@ const { getDb } = require('../util/database');
 // const User = require('../models/user');
 
 exports.defaultUser = function ( req, res, next ){ 
-  // User.findOrCreate({ where: {id: 1 }, defaults: {name: 'Dana' }})
-  // .then( user => {
-  //   //console.log("Loaded user", user)
-  //   req.user = user[0];
-  //   next()
-  // });
   getDb().collection('users').findOne({name: 'Dana'})
   .then( user => {
     console.log("Default user", user)

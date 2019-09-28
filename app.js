@@ -10,15 +10,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var { getDb, connect } = require('./util/database');
 
+/* Import routers */
 var indexRouter = require('./routes/index');
 // //var usersRouter = require('./routes/users');
-// var statesRouter = require('./routes/states');
+var statesRouter = require('./routes/states');
 // var usersRouter = require('./routes/users');
 // var favoritesRouter = require('./routes/favorites');
-
 var usersController = require('./controllers/usersController');
-// var User = require('./models/user');
-// var Favorite = require('./models/favorite');
+
 var app = express();
 
 // view engine setup
@@ -31,12 +30,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* Routers go here */
 app.use('/', usersController.defaultUser );
 // app.use('/users', usersRouter )
 // app.use('/users', favoritesRouter )
-// app.use('/state', statesRouter );
+app.use('/state', statesRouter );
 app.use('/', indexRouter );
-//app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
