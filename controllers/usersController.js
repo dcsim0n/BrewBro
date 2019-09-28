@@ -4,16 +4,28 @@
 |--------------------------------------------------
 */
 
-const sequelize = require('../util/database');
-const User = require('../models/user');
+const { getDb } = require('../util/database');
+
+// const User = require('../models/user');
 
 exports.defaultUser = function ( req, res, next ){ 
-  User.findOrCreate({ where: {id: 1 }, defaults: {name: 'Dana' }})
+  // User.findOrCreate({ where: {id: 1 }, defaults: {name: 'Dana' }})
+  // .then( user => {
+  //   //console.log("Loaded user", user)
+  //   req.user = user[0];
+  //   next()
+  // });
+  getDb().collection('users').findOne({name: 'Dana'})
   .then( user => {
-    //console.log("Loaded user", user)
-    req.user = user[0];
-    next()
-  });
+    if(!user){
+      return getDb().collection('users').insert({name: 'Dana', favorites:[]})
+    }
+    return user;
+  })
+  .then( user =>{
+    req.user = user;
+    next();
+  })
 
 };
 
