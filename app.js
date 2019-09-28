@@ -8,17 +8,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sequelize = require('./util/database');
+var { getDb, connect } = require('./util/database');
 
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-var statesRouter = require('./routes/states');
-var usersRouter = require('./routes/users');
-var favoritesRouter = require('./routes/favorites');
+// //var usersRouter = require('./routes/users');
+// var statesRouter = require('./routes/states');
+// var usersRouter = require('./routes/users');
+// var favoritesRouter = require('./routes/favorites');
 
-var usersController = require('./controllers/usersController');
-var User = require('./models/user');
-var Favorite = require('./models/favorite');
+// var usersController = require('./controllers/usersController');
+// var User = require('./models/user');
+// var Favorite = require('./models/favorite');
 var app = express();
 
 // view engine setup
@@ -31,11 +31,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', usersController.defaultUser );
-app.use('/users', usersRouter )
-app.use('/users', favoritesRouter )
-app.use('/state', statesRouter );
-app.use('/', indexRouter );
+// app.use('/', usersController.defaultUser );
+// app.use('/users', usersRouter )
+// app.use('/users', favoritesRouter )
+// app.use('/state', statesRouter );
+// app.use('/', indexRouter );
 //app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -55,12 +55,12 @@ app.use(function(err, req, res, next) {
 });
 
 
-//Associations
-User.hasMany(Favorite);
-Favorite.belongsTo(User);
+// //Associations
+// User.hasMany(Favorite);
+// Favorite.belongsTo(User);
 
-sequelize.sync({ force: true })
-// sequelize.sync()
-.then( err => {
-  app.listen( 3000 );
-});
+connect(( client )=>{
+
+  app.listen(3000);
+
+})
