@@ -4,16 +4,15 @@
 |--------------------------------------------------
 */
 
-const { getDb } = require('../util/database');
 
-// const User = require('../models/user');
+const User = require('../models/user');
 
 exports.defaultUser = function ( req, res, next ){ 
-  getDb().collection('users').findOne({name: 'Dana'})
+  User.findOne({name: 'Dana'})
   .then( user => {
     console.log("Default user", user)
     if(!user){
-      return getDb().collection('users').insert({name: 'Dana', favorites:[]})
+      return User.create({name: 'Dana', favorites:[]})
     }
     return user;
   })

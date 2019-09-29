@@ -8,7 +8,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var { getDb, connect } = require('./util/database');
+var mongoose = require('mongoose');
+// var { getDb, connect } = require('./util/database');
 
 /* Import routers */
 var indexRouter = require('./routes/index');
@@ -58,8 +59,7 @@ app.use(function(err, req, res, next) {
 // User.hasMany(Favorite);
 // Favorite.belongsTo(User);
 
-connect(( client )=>{
-
-  app.listen(3000);
-
-})
+mongoose.connect('mongodb+srv://dana:5B97WFM0ilmcXWXCNDi3@portfolio-cluster-aotog.azure.mongodb.net/brews?retryWrites=true&w=majority')
+  .then(( result ) =>{
+    app.listen(3000);
+  });

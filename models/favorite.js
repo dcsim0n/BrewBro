@@ -4,13 +4,12 @@
 |--------------------------------------------------
 */
 
-const Sequelize = require('sequelize');
-const sequelize = require('../util/database');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const Favorite = sequelize.define('favorite', {
-  id: { type: Sequelize.INTEGER, primaryKey: true },
-  breweryId: { type: Sequelize.INTEGER, allowNull: false},
-  name: { type: Sequelize.STRING, allowNull: false }
+const favoriteSchema = new Schema({
+  breweryId: { type: Number, required: true },
+  name: { type: String, required: true }
 })
 
-module.exports = Favorite;
+module.exports = mongoose.model('Favorite',favoriteSchema);

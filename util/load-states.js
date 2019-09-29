@@ -3,14 +3,14 @@
 | into mongo db database
 */
 
-const { getDb , connect } = require('./database');
+const mongoose = require('mongoose');
+const State = require('../models/state');
+
 const stateData = require('../states.json');
-connect(( client )=>{
+mongoose.connect('mongodb+srv://dana:5B97WFM0ilmcXWXCNDi3@portfolio-cluster-aotog.azure.mongodb.net/brews?retryWrites=true&w=majority')
+.then(( result )=>{
     data = Object.keys(stateData).map(( key )=>{
         return {keyName: key, valueName: stateData[key].name }
     })
-    getDb().collection('states').insertMany(data)
-    .then((result)=>{
-        client.close();
-    })  
-});
+    State.insertMany(data);
+})

@@ -3,12 +3,16 @@
 | User model
 |--------------------------------------------------
 */
-const Sequelize = require('sequelize');
-const sequelize= require('../util/database');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const User = sequelize.define('user', {
-  id: { type: Sequelize.INTEGER , primaryKey: true },
-  name: { type: Sequelize.STRING , allowNull: false },
+const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  favorites: {
+    type: Array
+  }
 })
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
