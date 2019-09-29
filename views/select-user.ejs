@@ -32,7 +32,13 @@
                 <tr>
                   <td><%= user.id %></td>
                   <td><a href="/users/<%=user.id %>"><%= user.name %></a></td>
-                  <td>Delete</td>
+                  <td>
+                    <form action="/users" method="POST" class="form-group">
+                      <input type="hidden" name="_method" value="DELETE" />
+                      <input type="hidden" name="userId" value="<%= user.id %>" />
+                      <button type="submit">Delete</button>
+                    </form>
+                  </td>
                 </tr>
                 
               <% }); %>

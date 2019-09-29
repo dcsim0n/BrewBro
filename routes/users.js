@@ -13,8 +13,9 @@ const favoritesController = require('../controllers/favoritesController');
 
 /* GET users listing. */
 router.get( '/', usersController.selectUser );
+router.delete( '/', usersController.deleteUser );
 router.post( '/', usersController.createUser );
-router.get( '/:id', usersController.userDetails )
+router.get( '/:id', usersController.userDetails );
 router.post('/:userId/favorites', favoritesController.createFavorite );
 
 

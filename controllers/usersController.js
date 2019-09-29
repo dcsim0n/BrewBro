@@ -45,6 +45,15 @@ exports.createUser = function( req, res, next ) {
 
 };
 
+exports.deleteUser = function( req, res, next ) {
+  console.log("Deleting user:", req.body.userId)
+  User.findById(req.body.userId)
+  .then ( ( user ) =>{
+    user.delete();
+    res.redirect('/users');
+  })
+}
+
 exports.userDetails = function( req, res, next ) {
   let currentUser;
   User.findById( req.params.id)
