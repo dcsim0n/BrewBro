@@ -5,6 +5,7 @@
 */
 
 const User = require('../models/user');
+const Brewery  = require('../models/brewery');
 
 exports.defaultUser = function ( req, res, next ){ 
   User.findOne({name: 'Dana'})
@@ -70,9 +71,17 @@ exports.createFavorite = function ( req, resp, next) {
   User.findById(req.params.userId)
   .then( user => {
     console.log("adding favorite to user: ", user.name)
-    user.favorites.push({ breweryId: req.body.breweryId, name: req.body.name });
-    user.save()
-    resp.redirect(`/users/${req.user.id}`);
+    Brewery.findById( req.body.breweryId )
+    .then( brewery =>{
+      user.favorites.push({
+        breweryId: brewery.id,
+        breweryType: brewery.brewery_type,
+        name: brewery.name
+      });
+      user.save()
+      resp.redirect(`/users/${req.user.id}`);
+
+    })
   });
   
 }
