@@ -4,7 +4,7 @@
 |--------------------------------------------------
 */
 
-
+const mongo = require('mongo');
 const User = require('../models/user');
 
 exports.defaultUser = function ( req, res, next ){ 
@@ -25,7 +25,7 @@ exports.defaultUser = function ( req, res, next ){
 
 exports.selectUser =  function(req, res, next) {
   console.log("Finding all users")
-  User.findAll()
+  User.find()
   .then( users => {
 
     res.render('select-user', {
@@ -38,7 +38,7 @@ exports.selectUser =  function(req, res, next) {
 
 exports.createUser = function( req, res, next ) {
   console.log("Creating user", req.body.name)
-  User.create({ name: req.body.name })
+  User.create({ name: req.body.name, favorites:[] })
   .then( user =>{
     console.log("created user", user)
      res.redirect('/users');    
@@ -48,16 +48,12 @@ exports.createUser = function( req, res, next ) {
 
 exports.userDetails = function( req, res, next ) {
   let currentUser;
-  User.findByPk( req.params.id )
+  User.findById( req.params.id)
   .then( user => {
-    currentUser = user;
-    return user.getFavorites()
-  })
-  .then( favorites =>{
     res.render('user-detail', {
       title: "User Favorites",
-      user: currentUser, 
-      favorites
+      user, 
+      favorites: user.favorites
     })
   });
 }
