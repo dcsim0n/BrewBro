@@ -2,7 +2,7 @@
  * Brew Bros app.js
  * Dana Simmons 2019
 */
-
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -52,7 +52,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-mongoose.connect('mongodb+srv://dana:5B97WFM0ilmcXWXCNDi3@portfolio-cluster-aotog.azure.mongodb.net/brews?retryWrites=true&w=majority')
+mongoose.connect(process.env.DB)
   .then(( result ) =>{
     app.listen(3000);
   });

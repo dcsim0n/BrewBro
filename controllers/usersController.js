@@ -4,7 +4,6 @@
 |--------------------------------------------------
 */
 
-const mongo = require('mongo');
 const User = require('../models/user');
 
 exports.defaultUser = function ( req, res, next ){ 
