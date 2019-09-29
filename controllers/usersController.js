@@ -65,3 +65,14 @@ exports.userDetails = function( req, res, next ) {
     })
   });
 }
+exports.createFavorite = function ( req, resp, next) {
+  console.log("Finding user:", req.params)
+  User.findById(req.params.userId)
+  .then( user => {
+    console.log("adding favorite to user: ", user.name)
+    user.favorites.push({ breweryId: req.body.breweryId, name: req.body.name });
+    user.save()
+    resp.redirect(`/users/${req.user.id}`);
+  });
+  
+}

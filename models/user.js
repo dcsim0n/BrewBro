@@ -11,8 +11,13 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  favorites: {
-    type: Array
-  }
+  favorites: [
+    {
+      breweryId: { type: Number, required: true },
+      name: { type: String, required: true  },
+      breweryType: { type: String }
+      
+    }
+  ]
 })
 module.exports = mongoose.model('User', userSchema);
