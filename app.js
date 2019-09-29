@@ -15,7 +15,6 @@ var mongoose = require('mongoose');
 // //var usersRouter = require('./routes/users');
 var browseRouter = require('./routes/browse');
 var usersRouter = require('./routes/users');
-// var favoritesRouter = require('./routes/favorites');
 var usersController = require('./controllers/usersController');
 
 var app = express();
@@ -33,7 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* Routers go here */
 app.use('/', usersController.defaultUser );
 app.use('/users', usersRouter )
-// app.use('/users', favoritesRouter )
 app.use('/', browseRouter );
 // app.use('/', indexRouter );
 
